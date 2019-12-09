@@ -34,3 +34,23 @@ spec:
   - protocol: TCP
     port: 8080
     nodePort: 32105
+    
+    
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: first-rc
+spec:
+  replicas: 6
+  selector:
+    app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello1
+        image: tomcat
+        ports:
+        - containerPort: 8080
